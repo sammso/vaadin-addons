@@ -3,3 +3,4 @@ Bundle-Description: ${project.description}
 Bundle-SymbolicName: ${project.artifactId}
 Bundle-Version: ${project.version}
 Bundle-Description: ${project.description}
+Private-Package: com.vaadin.osgi.servlet.provider
