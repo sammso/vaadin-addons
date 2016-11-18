@@ -3,3 +3,8 @@
 enroute.zip
 .metadata
 .DS_Store
+.project
+.settings/
+.classpath
+target
+
