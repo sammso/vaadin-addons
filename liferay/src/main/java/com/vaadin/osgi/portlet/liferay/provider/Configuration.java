@@ -19,8 +19,6 @@ import org.osgi.service.metatype.annotations.AttributeDefinition;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 
 import com.vaadin.osgi.servlet.api.OSGiConstants;
-import com.vaadin.osgi.servlet.provider.PushMode;
-import com.vaadin.osgi.servlet.provider.PushTransport;
 
 @ObjectClassDefinition(name = "Vaadin Portlet Config", description = "Configures the Vaadin Portlet")
 public @interface Configuration {
@@ -63,13 +61,4 @@ public @interface Configuration {
 	// TODO Sampsa - do you need this?
 	@AttributeDefinition(name = "resourceCacheTime", description = "The time a browser may cache a resource in seconds. Enter -1 for Vaadin default.", required = false)
 	int resourceCacheTime() default -1;
-
-	// TODO Sampsa - do you need this?
-	@AttributeDefinition(name = "pushMode", description = "Whether and how push should be used in Vaadin", required = false)
-	PushMode pushMode() default PushMode.DISABLED;
-
-	// TODO Sampsa - do you need this?
-	@AttributeDefinition(name = "pushTransport", description = "The type of transport used with push", required = false)
-	PushTransport pushTransport() default PushTransport.WEBSOCKET;
-
 }

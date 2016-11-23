@@ -17,16 +17,14 @@ package com.vaadin.osgi.portlet.liferay.provider;
 
 import java.util.Properties;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.vaadin.server.Constants;
 import com.vaadin.server.DefaultDeploymentConfiguration;
 import com.vaadin.server.DeploymentConfiguration;
 import com.vaadin.server.ServiceException;
 import com.vaadin.server.UIProvider;
 import com.vaadin.server.VaadinPortlet;
-import com.vaadin.server.VaadinPortletRequest;
 import com.vaadin.server.VaadinPortletService;
 import com.vaadin.server.VaadinPortletSession;
 import com.vaadin.server.VaadinRequest;
@@ -35,7 +33,7 @@ import com.vaadin.server.VaadinSession;
 @SuppressWarnings("serial")
 public class OSGiPortlet extends VaadinPortlet {
 
-	static final Logger LOGGER = LoggerFactory.getLogger(OSGiPortlet.class);
+	static final Log LOGGER = LogFactoryUtil.getLog(OSGiPortlet.class);
 
 	private UIProvider uiProvider;
 	private Configuration config;
@@ -59,9 +57,9 @@ public class OSGiPortlet extends VaadinPortlet {
 		initParameters.setProperty(SERVLET_PARAMETER_PRODUCTION_MODE, Boolean.toString(config.productionMode()));
 
 		// TODO Sampsa - do you need this?
-		if (config.pushMode() != null) {
-			initParameters.setProperty(SERVLET_PARAMETER_PUSH_MODE, config.pushMode().name());
-		}
+		//if (config.pushMode() != null) {
+		//	initParameters.setProperty(SERVLET_PARAMETER_PUSH_MODE, config.pushMode().name());
+		//}
 
 		// TODO Sampsa - do you need this?
 		if (config.resourceCacheTime() >= 0) {

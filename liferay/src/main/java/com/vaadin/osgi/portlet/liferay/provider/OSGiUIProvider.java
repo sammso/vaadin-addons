@@ -17,9 +17,9 @@ package com.vaadin.osgi.portlet.liferay.provider;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.ServiceObjects;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.vaadin.osgi.portlet.liferay.provider.OSGiPortlet.LocalVaadinPortletService;
 import com.vaadin.osgi.servlet.api.OSGiConstants;
 import com.vaadin.server.ClientConnector.DetachEvent;
@@ -27,14 +27,12 @@ import com.vaadin.server.ClientConnector.DetachListener;
 import com.vaadin.server.UIClassSelectionEvent;
 import com.vaadin.server.UICreateEvent;
 import com.vaadin.server.UIProvider;
-import com.vaadin.shared.communication.PushMode;
-import com.vaadin.shared.ui.ui.Transport;
 import com.vaadin.ui.UI;
 
 @SuppressWarnings("serial")
 public class OSGiUIProvider extends UIProvider {
 
-	static final Logger LOGGER = LoggerFactory.getLogger(OSGiUIProvider.class);
+	static final Log LOGGER = LogFactoryUtil.getLog(OSGiUIProvider.class);
 
 	ServiceObjects<UI> _serviceObjects;
 	Class<UI> _uiClass;
@@ -104,26 +102,6 @@ public class OSGiUIProvider extends UIProvider {
 			title = super.getPageTitle(event);
 		}
 		return title;
-	}
-
-	@Override
-	public PushMode getPushMode(UICreateEvent event) {
-		LocalVaadinPortletService service = (LocalVaadinPortletService) event.getRequest().getService();
-		com.vaadin.osgi.servlet.provider.PushMode pushMode = service.getConfiguration().pushMode();
-		if (pushMode == null) {
-			return super.getPushMode(event);
-		}
-		return PushMode.valueOf(pushMode.name());
-	}
-
-	@Override
-	public Transport getPushTransport(UICreateEvent event) {
-		LocalVaadinPortletService service = (LocalVaadinPortletService) event.getRequest().getService();
-		com.vaadin.osgi.servlet.provider.PushTransport pushTransport = service.getConfiguration().pushTransport();
-		if (pushTransport == null) {
-			return super.getPushTransport(event);
-		}
-		return Transport.valueOf(pushTransport.name());
 	}
 
 	public String getPortletName() {

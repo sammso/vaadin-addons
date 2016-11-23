@@ -33,21 +33,20 @@ import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.metatype.annotations.Designate;
 import org.osgi.util.tracker.ServiceTracker;
 import org.osgi.util.tracker.ServiceTrackerCustomizer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.vaadin.osgi.servlet.api.OSGiConstants;
 import com.vaadin.ui.UI;
 
-import osgi.enroute.configurer.api.RequireConfigurerExtender;
 
 @Component(immediate = true, configurationPolicy = ConfigurationPolicy.REQUIRE, configurationPid = {
 		"com.vaadin.osgi.portlet.liferay.provider" })
 @Designate(ocd = Configuration.class, factory = true)
-@RequireConfigurerExtender
+
 public class VaadinPortletProvider {
 
-	static final Logger LOGGER = LoggerFactory.getLogger(VaadinPortletProvider.class);
+	static final Log LOGGER = LogFactoryUtil.getLog(VaadinPortletProvider.class);
 
 	Configuration config;
 	ComponentContext context;
